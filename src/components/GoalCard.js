@@ -1,8 +1,10 @@
 import React from 'react';
 
-function GoalCard() {
+function GoalCard({goal}) {
     return (
-      <div>Kikkelikakka</div>
+        <div>
+            name:{goal.name}, count:{goal.count}
+        </div>
     )
   }
   

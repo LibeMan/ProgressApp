@@ -1,8 +1,8 @@
-import GoalCard from './components/GoalCard'
+import GoalCardList from './components/GoalCardList'
 
 function App() {
   return (
-    <GoalCard/>
+    <GoalCardList/>
   )
 }
 
