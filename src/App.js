@@ -1,8 +1,8 @@
-
+import GoalCard from './components/GoalCard'
 
 function App() {
   return (
-    <div>Kikkelikakka</div>
+    <GoalCard/>
   )
 }
 
