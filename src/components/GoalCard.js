@@ -4,6 +4,8 @@ const GoalCard = ({goal}) => {
     return (
         <div>
             name:{goal.name}, count:{goal.count}
+            <button>Reset</button>
+            <button>Delete</button>
         </div>
     )
   }

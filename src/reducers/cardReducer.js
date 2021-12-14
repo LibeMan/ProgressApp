@@ -2,10 +2,22 @@ import cardService from '../services/card'
 
 const cardReducer = (state = [], action) => {
   switch (action.type) {
+    case 'NEW_CARD':
+      return state.concat(action.data)
     case 'INIT_CARDS':
       return action.data
     default:
       return state
+  }
+}
+
+export const createCard = (name, id) => {
+  return async dispatch => {
+    const newCard = await cardService.create(name, id)
+    dispatch({
+      type: 'NEW_CARD',
+      data: newCard,
+    })
   }
 }
 

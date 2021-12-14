@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react'
-import GoalCardList from './components/GoalCardList'
 import { initializeCards } from './reducers/cardReducer'
 import { useDispatch } from 'react-redux'
+import GoalCardList from './components/GoalCardList'
+import CardForm from './components/CardForm'
 
-function App() {
+const App = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -14,6 +15,7 @@ function App() {
     <div>
       <h1>yoyo</h1>
       <GoalCardList/>
+      <CardForm/>
     </div>
     
   )
