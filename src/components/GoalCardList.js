@@ -5,13 +5,8 @@ function GoalCardList() {
 
     // const dispatch = useDispatch()
 
-    const cards = useSelector(({filter, cards}) => {
-        if ( filter === '' ) {
-            return cards
-          }
-        return filter  !== '' 
-            ? cards.filter(card => card.content.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
-            : cards
+    const cards = useSelector(({cards}) => {
+        return cards
     })
 
     return (

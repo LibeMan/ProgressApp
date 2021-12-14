@@ -6,12 +6,16 @@ import { useDispatch } from 'react-redux'
 function App() {
 
   const dispatch = useDispatch()
-    useEffect(() => {
+  useEffect(() => {
       dispatch(initializeCards()) 
   },[dispatch]) 
 
   return (
-    <GoalCardList/>
+    <div>
+      <h1>yoyo</h1>
+      <GoalCardList/>
+    </div>
+    
   )
 }
 

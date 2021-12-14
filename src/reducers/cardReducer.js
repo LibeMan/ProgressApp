@@ -12,6 +12,7 @@ const cardReducer = (state = [], action) => {
 export const initializeCards = () => {
     return async dispatch => {
       const cards = await cardService.getAll()
+      console.log(cards)
       dispatch({
         type: 'INIT_CARDS',
         data: cards,

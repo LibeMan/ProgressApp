@@ -15,10 +15,12 @@ const store = createStore(
   )
 )
 
+/*
 cardService.getAll().then(cards =>
   cards.forEach(card => {
     store.dispatch({ type: 'NEW_CARD', data: card })
   })
 )
+*/
 
 export default store
