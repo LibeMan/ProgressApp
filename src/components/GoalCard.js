@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GoalCard({goal}) {
+const GoalCard = ({goal}) => {
     return (
         <div>
             name:{goal.name}, count:{goal.count}

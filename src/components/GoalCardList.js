@@ -1,9 +1,7 @@
 import GoalCard from './GoalCard'
 import { useSelector } from 'react-redux'
 
-function GoalCardList() {
-
-    // const dispatch = useDispatch()
+const GoalCardList = () => {
 
     const cards = useSelector(({cards}) => {
         return cards
