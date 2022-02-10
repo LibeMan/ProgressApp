@@ -5,6 +5,12 @@ const getAll = async () => {
     const response = await axios.get(baseUrl)
     return response.data
   }
+/* OLD 
+const create = async (content, id) => {
+  const object = { content, id}
+  const response = await axios.post(baseUrl, object)
+  return response.data
+}  */
 
 const create = newObject => {
   const request = axios.post(baseUrl, newObject)

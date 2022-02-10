@@ -8,10 +8,16 @@ const CardForm = () => {
 
   const addCard = async (event) => {
     event.preventDefault()
-    const content = event.target.anecdote.value
+    const content = event.target.card.value
     const newId = id()
-    event.target.anecdote.value = ''
-    dispatch(createCard(content, newId))
+    event.target.card.value = ''
+    const newCard = {
+      name: content,
+      count: 0,
+    }
+    console.log("Hejhej: ", content, newId)
+    
+    dispatch(createCard(newCard))
   }
 
   return (

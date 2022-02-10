@@ -11,9 +11,9 @@ const cardReducer = (state = [], action) => {
   }
 }
 
-export const createCard = (name, id) => {
+export const createCard = (newObject) => {
   return async dispatch => {
-    const newCard = await cardService.create(name, id)
+    const newCard = await cardService.create(newObject)
     dispatch({
       type: 'NEW_CARD',
       data: newCard,
