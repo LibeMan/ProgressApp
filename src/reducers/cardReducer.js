@@ -6,9 +6,16 @@ const cardReducer = (state = [], action) => {
       return state.concat(action.data)
     case 'INIT_CARDS':
       return action.data
+    case "DELETE":
+      return refreshPage()
     default:
       return state
   }
+}
+
+//Refresh page
+function refreshPage(){
+  window.location.reload()
 }
 
 export const createCard = (newObject) => {
@@ -19,6 +26,17 @@ export const createCard = (newObject) => {
       data: newCard,
     })
   }
+}
+//Delete card
+export const deleteCard = (id) => {
+  return async dispatch => {
+    await cardService
+    .del(id)
+    dispatch({
+      type:'DELETE'
+    })
+  }
+  
 }
 
 export const initializeCards = () => {
