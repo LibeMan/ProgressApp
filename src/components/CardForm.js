@@ -10,10 +10,13 @@ const CardForm = () => {
     event.preventDefault()
     const content = event.target.card.value
     const newId = id()
+    const ndate = new Date().getTime()
+    console.log("CARDFORM: ",ndate)
     event.target.card.value = ''
     const newCard = {
       name: content,
       count: 0,
+      date: ndate,
     }
     console.log("Hejhej: ", content, newId)
     
