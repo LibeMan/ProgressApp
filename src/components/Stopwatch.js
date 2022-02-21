@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const Stopwatch = ({goalTime}) => {
     
 
-    //Kokeilen tässä
+    //calculations
 
     const fdate = new Date().getTime()
     const dif = goalTime - fdate
@@ -12,14 +12,6 @@ const Stopwatch = ({goalTime}) => {
     //Seconds
     const secsFrom = dif / 1000
     const secsBetween = Math.abs(secsFrom)
-    //minutes
-    const minutesFrom = secsBetween / 60
-    const minsBetween = Math.abs(minutesFrom)
-    //Hours
-    const hoursFrom = minsBetween / 60
-    const hoursBetween = Math.abs(hoursFrom)
-    //Days
-    //const daysBetween = Math.round((fdate-firstDate)/(1000*60*60*24)); 
 
     //Calculate separate d,h,m,s
     const days = secsBetween / 86400
@@ -44,11 +36,6 @@ const Stopwatch = ({goalTime}) => {
     
     
     const [time, setTime] = useState(dif);
-    const [dClock, setD] = useState(0);
-    const [hClock, setH] = useState(0);
-    const [mClock, setM] = useState(0);
-    const [sClock, setS] = useState(0);
-
     const [running, setRunning] = useState(true);
 
     useEffect(() => {

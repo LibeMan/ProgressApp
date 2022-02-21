@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>yoyo</h1>
+      <h1>PlantApp</h1>
       <GoalCardList/>
       <CardForm/>
     </div>
