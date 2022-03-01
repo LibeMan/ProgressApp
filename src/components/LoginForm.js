@@ -1,54 +1,63 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button } from 'react-bootstrap'
+import { useState } from 'react'
+import loginService from '../services/login'
 
-const LoginForm = ({
-  handleSubmit,
-  handleUsernameChange,
-  handlePasswordChange,
-  username,
-  password
-}) => {
+const LoginForm = () => {
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  //Handle login
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    try {
+      const user = await loginService.login({
+        username, password,
+      })
+      loginService.setToken(user.token)
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      setErrorMessage('Wrong credentials')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
   return (
     <div>
       <h2>Login</h2>
-
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>
-            Username
-          </Form.Label>
-          <Form.Control
-            id='username'
-            placeholder="username"
+      <p>{errorMessage}</p>
+      <form onSubmit={handleLogin}>
+        <div>
+          username
+            <input
+            type="text"
             value={username}
-            onChange={handleUsernameChange}
+            name="Username"
+            onChange={({ target }) => setUsername(target.value)}
           />
-          <Form.Label>
-            Password
-          </Form.Label>
-          <Form.Control
-            id='password'
+        </div>
+        <div>
+          password
+            <input
             type="password"
-            placeholder="password"
             value={password}
-            onChange={handlePasswordChange}
+            name="Password"
+            onChange={({ target }) => setPassword(target.value)}
           />
-          <br/>
-          <Button variant="primary" id='login-button' type="submit">login</Button>
-        </Form.Group>
-      </Form>
+        </div>
+        <button type="submit">login</button>
+      </form>
       <br/>
     </div>
   )
-}
-
-LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleUsernameChange: PropTypes.func.isRequired,
-  handlePasswordChange: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
 }
 
 export default LoginForm

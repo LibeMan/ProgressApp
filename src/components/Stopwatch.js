@@ -30,8 +30,8 @@ const Stopwatch = ({goalTime}) => {
     const secsLeftMin = (minsLeft - minFloor) * 60
     const secsFloor= Math.floor(secsLeftMin)
 
-    console.log("Stopwatch: ", avrundHours, secsLeftHours, secsLeftMin)
-    console.log("Here are results: ", avrundDays, avrundHours, minFloor, secsFloor)
+    //console.log("Stopwatch: ", avrundHours, secsLeftHours, secsLeftMin)
+    //console.log("Here are results: ", avrundDays, avrundHours, minFloor, secsFloor)
     //Next lets get those numbers into a usestate that updates   
     
     
