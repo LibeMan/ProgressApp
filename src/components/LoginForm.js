@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button } from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector} from 'react-redux'
 import loginService from '../services/login'
+import { setLogin } from '../reducers/loginReducer'
+import cardService from '../services/card'
 
 const LoginForm = () => {
 
@@ -11,6 +14,25 @@ const LoginForm = () => {
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedPlantappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      // setUser(user)
+      dispatch(setLogin(user))
+      cardService.setToken(user.token)
+      console.log("User: ", loggedUserJSON)
+    }
+  },[dispatch])
+
+  //User
+  const userJ = useSelector(({user}) => {
+    console.log("HEj token här:", user)
+      return user
+  })
+
   //Handle login
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -18,7 +40,11 @@ const LoginForm = () => {
       const user = await loginService.login({
         username, password,
       })
-      loginService.setToken(user.token)
+      cardService.setToken(user.token)
+      //local storage
+      window.localStorage.setItem(
+        'loggedPlantappUser', JSON.stringify(user)
+      )
       setUser(user)
       setUsername('')
       setPassword('')
@@ -30,9 +56,23 @@ const LoginForm = () => {
     }
   }
 
+  //Handle log-out
+  const handleLogout = async (event) => {
+    event.preventDefault()
+    window.localStorage.clear()
+    window.location.reload();
+  }
+
   return (
     <div>
       <h2>Login</h2>
+      <button onClick={handleLogout}>Log out</button>
+      {user === null ?
+          <p>Not logged-in</p> :
+          <div>
+            <p>{user.name} logged-in</p>
+          </div>
+        }
       <p>{errorMessage}</p>
       <form onSubmit={handleLogin}>
         <div>

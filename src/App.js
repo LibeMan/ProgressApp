@@ -18,12 +18,6 @@ const App = () => {
       dispatch(initializeCards()) 
   },[dispatch]) 
 
-  //User
-  const user = useSelector(({user}) => {
-    console.log("HEj token här:", user)
-      return user
-  })
-
   
 
   return (
