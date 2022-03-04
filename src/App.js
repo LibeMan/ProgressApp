@@ -18,6 +18,11 @@ const App = () => {
       dispatch(initializeCards()) 
   },[dispatch]) 
 
+  //User
+  const userInfo = useSelector(({userInfo}) => {
+    console.log("HEj user här i app:", userInfo)
+      return userInfo
+  })
   
 
   return (
