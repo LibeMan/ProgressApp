@@ -10,6 +10,7 @@ const userReducer = (state = userInfo, action) => {
 }
 
 export const setInfo = (userInfo) => {
+    console.log("kokeilen userinfoa: ",userInfo)
     return {
         type: 'SET_USER',
         data: userInfo

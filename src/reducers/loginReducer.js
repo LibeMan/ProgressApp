@@ -18,8 +18,7 @@ const loginReducer = (state = user, action) => {
 
 export const setLogin = user => {
     return async dispatch => {
-        //cardService.setToken(user.token)
-        //const newUser = await loginService.login(user)
+        
         dispatch({
           type:'LOGIN',
           user

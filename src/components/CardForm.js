@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { createCard } from '../reducers/cardReducer'
 
-const CardForm = () => {
+const CardForm = ({user}) => {
 
   const dispatch = useDispatch()
   const id = () => (100000 * Math.random()).toFixed(0)
@@ -11,14 +11,16 @@ const CardForm = () => {
     const content = event.target.card.value
     const newId = id()
     const ndate = new Date().getTime()
+    const userName = user
     console.log("CARDFORM: ",ndate)
     event.target.card.value = ''
     const newCard = {
       name: content,
       count: 0,
       date: ndate,
+      owner: userName
     }
-    console.log("Hejhej: ", content, newId)
+    console.log("Hejhej: ", content, userName)
     
     dispatch(createCard(newCard))
   }

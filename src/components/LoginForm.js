@@ -65,6 +65,7 @@ const LoginForm = () => {
   //Handle log-out
   const handleLogout = async (event) => {
     event.preventDefault()
+    //dispatch(setInfo(null))
     window.localStorage.clear()
     window.location.reload();
   }
@@ -189,7 +190,6 @@ const LoginForm = () => {
           loginForm() :
           <div>
             <p>{user.name} logged-in</p>
-            <UserCards user={user.cards}/>
             <button onClick={handleLogout}>Log out</button>
           </div>
         }
