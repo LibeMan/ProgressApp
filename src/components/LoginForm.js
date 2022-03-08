@@ -1,14 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Form, Button } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
+import { useState } from 'react'
+import { useDispatch} from 'react-redux'
 import loginService from '../services/login'
 import { setLogin } from '../reducers/loginReducer'
 import cardService from '../services/card'
-import { createUser } from '../reducers/userReducer'
 import userService from '../services/user'
-import UserCards from './UserCards'
 import { setInfo } from '../reducers/userReducer'
 
 const LoginForm = () => {
@@ -25,6 +21,7 @@ const LoginForm = () => {
 
   const dispatch = useDispatch()
 
+  /*
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedPlantappUser')
     if (loggedUserJSON) {
@@ -34,7 +31,7 @@ const LoginForm = () => {
       cardService.setToken(user.token)
       console.log("User: ", loggedUserJSON)
     }
-  },[dispatch])
+  },[dispatch])*/
 
 
   //Handle login
@@ -53,6 +50,7 @@ const LoginForm = () => {
       setUsername('')
       setPassword('')
       console.log("Kokeilen user dataa: ", user)
+      dispatch(setLogin(user))
       dispatch(setInfo(user))
     } catch (exception) {
       setErrorMessage('Wrong credentials')
@@ -62,13 +60,7 @@ const LoginForm = () => {
     }
   }
 
-  //Handle log-out
-  const handleLogout = async (event) => {
-    event.preventDefault()
-    //dispatch(setInfo(null))
-    window.localStorage.clear()
-    window.location.reload();
-  }
+  
 
   //Handle register
   const handleRegister = async (event) => {
@@ -81,22 +73,18 @@ const LoginForm = () => {
         username, name, password,
       })
       console.log("Registered ", user)
-
-      cardService.setToken(user.token)
-      //local storage
-      window.localStorage.setItem(
-        'loggedPlantappUser', JSON.stringify(user)
-      )
-      setUser(user)
-      setUsername('')
-      setPassword('')
+      setErrorMessage("Your account has been registered!")
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+     
       
     } catch (exception) {
       setErrorMessage('Something went wrong!')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
-    }
+    } 
 
   }
 
@@ -109,7 +97,7 @@ const LoginForm = () => {
     const showWhenVisible2 = { display: createVisible ? '' : 'none' }
 
     return(
-      <div>
+      <div className='loginform'>
         <div style={hideWhenVisible}>
           <button onClick={() => setLoginVisible(true)}>log in</button>
         </div>
@@ -185,14 +173,14 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h2>Login</h2>
-      {user === null ?
-          loginForm() :
-          <div>
-            <p>{user.name} logged-in</p>
-            <button onClick={handleLogout}>Log out</button>
+      
+          <div className='login'>
+            <h2>Login</h2>
+            {loginForm()}
           </div>
-        }
+           
+          
+        
       <p>{errorMessage}</p>
       
       <br/>

@@ -16,10 +16,11 @@ const GoalCard = ({goal}) => {
         dispatch(deleteCard(id))
     }
     return (
-        <div>
-            name:{goal.name}
-            <button onClick={()=>delCard(goal.id)}>Delete</button>
+        <div className='card'>
+            <h1>{goal.name}</h1>
+            <hr></hr>
             <Stopwatch goalTime={tdate}/>
+            <button onClick={()=>delCard(goal.id)}>Delete</button>
         </div>
     )
   }

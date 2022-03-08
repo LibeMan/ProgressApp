@@ -5,11 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import GoalCardList from './components/GoalCardList'
 import CardForm from './components/CardForm'
 import LoginForm from './components/LoginForm'
+import About from './components/About'
+import Logout from './components/Logout'
 //Services
 
 import cardService from './services/card'
 //Reducers
-import setLogin from './reducers/loginReducer'
+import { setInfo } from './reducers/userReducer'
+import Navbar from './components/NavBar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 const App = () => {
 
@@ -19,6 +29,17 @@ const App = () => {
   useEffect(() => {
       dispatch(initializeCards()) 
   },[dispatch]) 
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedPlantappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      // setUser(user)
+      dispatch(setInfo(user))
+      cardService.setToken(user.token)
+      console.log("User: ", loggedUserJSON)
+    }
+  },[dispatch])
 
   //console.log("Store of the state: ",store.getState())
 
@@ -33,16 +54,31 @@ const App = () => {
 
   return (
     <div>
-      <h1>PlantApp</h1>
-      {userInfo === null ?
-        emptyName : 
-        <div>
-          <CardForm user={userInfo.name}/>
-          <GoalCardList userName={userInfo.name}/>
-        </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/home" >
+          <h1>PlantApp</h1>
+          </Route>
+          <Route path="/about" component={About}>
+              <About />
+          </Route>
+          
+          
+        </Switch>
         
-      }
-      <LoginForm/>
+        {userInfo === null ?
+          <LoginForm/> : 
+          <div>
+            <Logout user={userInfo.name}/>
+            <CardForm user={userInfo.name}/>
+            <GoalCardList userName={userInfo.name}/>
+          </div>
+          
+        }
+        
+      </Router>
+      
       
       
     </div>

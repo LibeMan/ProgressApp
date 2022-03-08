@@ -52,20 +52,28 @@ const Stopwatch = ({goalTime}) => {
     return (
       <div className="stopwatch">
         <div className="numbers">
-          <div>{("Days: " + avrundDays)}</div>
-          <div>{("Hours: " + avrundHours)}</div>
-          <div>{("Minutes: " + minFloor)}</div>
-          <div>{("Seconds: " + secsFloor)}</div>
+          <div>{("Days: " + avrundDays)}</div><hr></hr>
+          <div>{("Hours: " + avrundHours)}</div><hr></hr>
+          <div>{("Minutes: " + minFloor)}</div><hr></hr>
+          <div>{("Seconds: " + secsFloor)}</div><hr></hr>
           
         </div>
-        <div className="buttons">
-          <button onClick={() => setRunning(true)}>Start</button>
-          <button onClick={() => setRunning(false)}>Stop</button>
-          <button onClick={() => setTime(dif)}>Reset</button>       
-        </div>
+        
       </div>
     );
   };
 
 
 export default Stopwatch;
+
+
+
+/* Buttons for stop and reset if needed
+<div className="buttons">
+          <button onClick={() => setRunning(true)}>Start</button>
+          <button onClick={() => setRunning(false)}>Stop</button>
+          <button onClick={() => setTime(dif)}>Reset</button>       
+        </div>
+
+
+*/
