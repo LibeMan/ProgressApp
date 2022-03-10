@@ -29,12 +29,12 @@ const NavBar = () => {
                 </ReactBootStrap.NavDropdown>
                 </ReactBootStrap.Nav>
                 <ReactBootStrap.Nav>
-                <Link to="/deets">
-                <ReactBootStrap.Nav.Link href="#deets">More deets</ReactBootStrap.Nav.Link>
+                <Link to="/chat">
+                <ReactBootStrap.Nav.Link href="#chat">Chat with others</ReactBootStrap.Nav.Link>
                 </Link>
-                <Link to="/dankmemes">
-                <ReactBootStrap.Nav.Link eventKey={2} href="#memes">
-                    Dank memes
+                <Link to="/myplants">
+                <ReactBootStrap.Nav.Link eventKey={2} href="#myplants">
+                    My plants
                 </ReactBootStrap.Nav.Link>
                 </Link>
                 </ReactBootStrap.Nav>

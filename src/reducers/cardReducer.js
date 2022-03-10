@@ -8,6 +8,16 @@ const cardReducer = (state = [], action) => {
       return action.data
     case "DELETE":
       return refreshPage()
+    case 'NOTE':
+      const targetNote = action.id
+      const cardToComment = state.find(n => n.id === targetNote)
+      const changedCardNote = { 
+          ...cardToComment, 
+          notes: cardToComment.notes.concat(action.note)
+      }
+      return state.map(card =>
+          card.id !== targetNote ? card : changedCardNote 
+      )
     default:
       return state
   }
@@ -37,6 +47,18 @@ export const deleteCard = (id) => {
     })
   }
   
+}
+
+//Set notes
+export const setCardNote = (id, newObject) => {
+  return async dispatch => {
+    const newNote = await cardService.update(id, newObject)
+    dispatch({
+      type: 'NOTE',
+      id: id,
+      data: newNote
+    })
+  }
 }
 
 export const initializeCards = () => {

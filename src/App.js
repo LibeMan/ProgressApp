@@ -19,6 +19,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import MyPlants from './components/MyPlants'
+import Chat from './components/Chat'
+import messageService from './services/message'
+import { setMessages } from './reducers/messageReducer'
 
 
 const App = () => {
@@ -27,7 +31,8 @@ const App = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-      dispatch(initializeCards()) 
+      dispatch(initializeCards())
+      dispatch(setMessages()) 
   },[dispatch]) 
 
   useEffect(() => {
@@ -37,19 +42,14 @@ const App = () => {
       // setUser(user)
       dispatch(setInfo(user))
       cardService.setToken(user.token)
-      console.log("User: ", loggedUserJSON)
     }
   },[dispatch])
 
-  //console.log("Store of the state: ",store.getState())
 
-  //User
+  //Getting User from store
   const userInfo = useSelector(({userInfo}) => {
-    console.log("HEj user här i app:", userInfo)
       return userInfo
   })
-
-  const emptyName = ""
   
 
   return (
@@ -63,24 +63,35 @@ const App = () => {
           <Route path="/about" component={About}>
               <About />
           </Route>
+          <Route path="/chat" component={Chat}>
+              <Chat />
+          </Route>
+          <Route path="/myplants" component={MyPlants}>
+            {userInfo === null ?
+            <div>
+              <p>To see your plants, please log in!</p>
+              <LoginForm/>
+            </div> 
+            :
+            <div>
+              <MyPlants />
+            </div>
+            }
+          </Route>
           
-          
-        </Switch>
-        
-        {userInfo === null ?
-          <LoginForm/> : 
+        </Switch>       
+      </Router>
+      {userInfo === null ?
+          <div>
+            
+          </div>
+          :
           <div>
             <Logout user={userInfo.name}/>
-            <CardForm user={userInfo.name}/>
-            <GoalCardList userName={userInfo.name}/>
           </div>
-          
-        }
-        
-      </Router>
+          }
       
-      
-      
+    
     </div>
     
   )
