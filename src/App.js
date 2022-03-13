@@ -7,6 +7,7 @@ import CardForm from './components/CardForm'
 import LoginForm from './components/LoginForm'
 import About from './components/About'
 import Logout from './components/Logout'
+import Highscores from './components/Highscores'
 //Services
 
 import cardService from './services/card'
@@ -58,19 +59,26 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route path="/home" >
-          <h1>PlantApp</h1>
+            <div className='startDiv'>
+              <h1>PlantApp</h1>
+              <p>With plantapp you can set timer on your newly grown plants and add notes to them while they grow. You can also see other people's plants and chat with other users</p>
+            </div>
+          
           </Route>
           <Route path="/about" component={About}>
               <About />
+          </Route>
+          <Route path="/highscores" component={Highscores}>
+              <Highscores />
           </Route>
           <Route path="/chat" component={Chat}>
               <Chat />
           </Route>
           <Route path="/myplants" component={MyPlants}>
             {userInfo === null ?
-            <div>
+            <div className='startDiv'>
               <p>To see your plants, please log in!</p>
-              <LoginForm/>
+              
             </div> 
             :
             <div>
@@ -83,7 +91,7 @@ const App = () => {
       </Router>
       {userInfo === null ?
           <div>
-            
+            <LoginForm/>
           </div>
           :
           <div>

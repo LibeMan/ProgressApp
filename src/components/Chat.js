@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { createMessage } from '../reducers/messageReducer';
+import { createMessage, deleteMessage } from '../reducers/messageReducer';
 import messageService from '../services/message'
 
 const Chat = () => {
@@ -46,9 +46,7 @@ const Chat = () => {
         <div>
             <h1 className='chatHeader'>Chat with other users</h1>
             <div className='parentDiv'>
-                <p>Yo</p>
                 {messageA.map((lol) => {
-                    console.log("Loggin:",lol.user)
                     
                     return(
                         <div>
@@ -60,10 +58,15 @@ const Chat = () => {
                     
                     
             </div>
-            <form onSubmit= {addMessage} className="addMesForm">
-                <input value={message} onChange={handleMessage}/>
+            {userInfo === null ?
+                <p className='addMesForm'>Log in to send messages!</p>
+                :
+                <form onSubmit= {addMessage} className="addMesForm">
+                    <input value={message} onChange={handleMessage}/>
                 <button type="submit">Send</button>
-            </form>
+                </form>
+            }
+            
         </div>
         
     )
