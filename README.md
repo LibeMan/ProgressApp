@@ -1,6 +1,6 @@
 Sovellus pyörii: https://pacific-mountain-51227.herokuapp.com/ <br />
 
-Tietoa projektista: Meidän piti aloittaa kahdestaan tämä projekti https://github.com/Nigouu kanssa, mutta ehdimme vain aloittaa sen ja työskennellä pari päivää ennen kun hän sai työpaikan. Joten jatkoin joulun jälkeen yksin projektin kanssa. Tämän takia kuitenkin backendi on tehty on alunperin Nigoun github käyttäjällä ja löytyy täältä: https://github.com/Nigouu/ProgressAppBackend
+Tietoa projektista: Meidän piti aloittaa kahdestaan tämä projekti https://github.com/Nigouu kanssa, mutta ehdimme vain aloittaa sen ja työskennellä pari päivää ennen kun hän sai työpaikan. Joten jatkoin yksin projektin kanssa. Tämän takia kuitenkin backendi on tehty on alunperin Nigoun github käyttäjällä ja löytyy täältä: https://github.com/Nigouu/ProgressAppBackend
 Myös frontendissä jostain syystä tein uuden branchin (newbranch) joulun jälkeen mistä tuli se branchi mihin rakensin koko projektin.<br />
 <br />
 Eli kokonaisuudessaan projektin koodit löytyy näistä:<br />
