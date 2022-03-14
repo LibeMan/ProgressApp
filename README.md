@@ -7,9 +7,9 @@ Eli kokonaisuudessaan projektin koodit löytyy näistä:
 Frontend: https://github.com/LibeMan/ProgressApp/tree/newbranch
 Backend: https://github.com/Nigouu/ProgressAppBackend
 
-päivä	  aika	  mitä tein__
-13.12	  4 	    Sovelluksen aloitus ja testaus perus toiminnoissa.__
-14.12	  5	      Puhe serverin välillä toimii + frontend toimintoja.__
+päivä	  aika	  mitä tein<br />
+13.12	  4 	    Sovelluksen aloitus ja testaus perus toiminnoissa.<br />
+14.12	  5	      Puhe serverin välillä toimii + frontend toimintoja.<br />
 15.12	  4 	    Mongodbtä ja corspolicy onglemia työstin.
 16.12	  3	      Mongo yhdistetty ja bugeja fixattu.
 
